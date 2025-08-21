@@ -16,18 +16,17 @@ function box() {
 
 function hover() {
     const boxes = document.querySelectorAll(".box");
-    const randomColor = Math.floor(Math.random()*16777215).toString(16);
     boxes.forEach(box => {
-        box.addEventListener("mouseenter", () => {
+        box.addEventListener("mouseover", () => {
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
             box.style.backgroundColor = "#" + randomColor;
-            
+            let compStyles = window.getComputedStyle(box);        
+            let opacity = Number(compStyles.getPropertyValue("opacity"));
+            if (opacity < 1) {
+                box.style.opacity = opacity + 0.1;
+            }
         });
-        box.addEventListener("mouseleave", () => {
-            box.style.backgroundColor = "#" + randomColor;
-            
-        });
-    })
-    console.log("boxes");
+    });
 }
 
 box();
