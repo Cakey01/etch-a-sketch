@@ -1,11 +1,11 @@
-const container = document.querySelector(".container");
+let size = 16;
 
-
-function box() {
-    for (i = 0; i < 16; i++ ) {
+function box(size) {
+    const container = document.querySelector(".container");
+    for (i = 0; i < size; i++) {
         const column = document.createElement("div");
         column.classList.add("column");
-        for (j = 0; j < 16; j++) {
+        for (j = 0; j < size; j++) {
             const box = document.createElement("div");
             box.classList.add("box");
             column.appendChild(box);
@@ -29,5 +29,23 @@ function hover() {
     });
 }
 
-box();
+function reset() {
+    const button = document.querySelector("button");
+    button.addEventListener("click", () => {
+        let input = Number(prompt("Enter # of squares per side"));
+        if (Number.isInteger(input) && input <= 100) {
+            const columns = document.querySelectorAll(".column");
+            columns.forEach(column => column.remove())
+            box(input);
+            hover(); 
+        } else {
+            input = prompt("Must be an integer less than 100");
+        }
+    })
+}
+
+
+
+box(size);
 hover();
+reset();
