@@ -1,7 +1,16 @@
 const container = document.querySelector(".container");
 
-for (i = 0; i < 32; i++) {
-    const grid = document.createElement("div");
-    grid.classList.add('grid');
-    container.appendChild(grid);
+function box() {
+    for (i = 0; i < 16; i++ ) {
+        const column = document.createElement("div");
+        column.classList.add("column");
+        for (j = 0; j < 16; j++) {
+            const box = document.createElement("div");
+            box.classList.add("box");
+            column.appendChild(box);
+        }
+        container.appendChild(column);
+    }
 }
+
+box();
